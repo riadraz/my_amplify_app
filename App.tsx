@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, View, StyleSheet } from "react-native";
-
+import { SafeAreaView,Button, View, StyleSheet } from "react-native";
+import TodoList from "./src/TodoList";
 import { Amplify } from "aws-amplify";
 import { Authenticator, useAuthenticator } from "@aws-amplify/ui-react-native";
 
@@ -22,13 +22,20 @@ const App = () => {
   return (
     <Authenticator.Provider>
       <Authenticator>
-        <SignOutButton />
+        <SafeAreaView style={styles.container}>
+          <SignOutButton />
+          <TodoList />
+        </SafeAreaView>
       </Authenticator>
     </Authenticator.Provider>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 8,
+  },
   signOutButton: {
     alignSelf: "flex-end",
   },
